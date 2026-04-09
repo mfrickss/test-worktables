@@ -3,7 +3,9 @@ import { cache } from '../config/cache';
 import { env } from '../config/env';
 import type { WeatherData } from '../types/weather';
 
-export async function getWatherByContry(country: string): Promise<WeatherData> {
+export async function getWatherByCountry(
+  country: string,
+): Promise<WeatherData> {
   const cacheKey = country.toLowerCase();
   const cached = cache.get<WeatherData>(cacheKey);
 
