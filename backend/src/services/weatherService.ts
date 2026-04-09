@@ -1,7 +1,7 @@
-import axios from "axios";
-import { cache } from "../config/cache";
-import { env } from "../config/env";
-import type { WeatherData } from "../types/weather";
+import axios from 'axios';
+import { cache } from '../config/cache';
+import { env } from '../config/env';
+import type { WeatherData } from '../types/weather';
 
 export async function getWatherByContry(country: string): Promise<WeatherData> {
   const cacheKey = country.toLowerCase();
@@ -30,10 +30,10 @@ export async function getWatherByContry(country: string): Promise<WeatherData> {
     return weather;
   } catch (err: unknown) {
     if (axios.isAxiosError(err) && err.response?.status === 400) {
-      const notFound = new Error("COUNTRY_NOT_FOUND");
-      notFound.name = "COUNTRY_NOT_FOUND";
+      const notFound = new Error('COUNTRY_NOT_FOUND');
+      notFound.name = 'COUNTRY_NOT_FOUND';
       throw notFound;
     }
-    throw new Error("WATHER_API_UNAVAILABLE");
+    throw new Error('WATHER_API_UNAVAILABLE');
   }
 }
