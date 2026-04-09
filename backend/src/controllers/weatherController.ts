@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { getWatherByCountry } from '../services/weatherService';
+import { getWeatherByCountry } from '../services/weatherService';
 import type { ApiResponse, WeatherData } from '../types/weather';
 
 export async function weatherController(
@@ -20,7 +20,7 @@ export async function weatherController(
   }
 
   try {
-    const data = await getWatherByCountry(country);
+    const data = await getWeatherByCountry(country);
     const body: ApiResponse<WeatherData> = { success: true, data };
     res.status(200).json(body);
   } catch (err: unknown) {
@@ -34,7 +34,7 @@ export async function weatherController(
       return;
     }
 
-    if (err instanceof Error && err.message === 'WEATHER_API_UNAVAILABLE') {
+    if (err instanceof Error && err.name === 'WEATHER_API_UNAVAILABLE') {
       const body: ApiResponse<never> = {
         success: false,
         code: 'WEATHER_API_UNAVAILABLE',

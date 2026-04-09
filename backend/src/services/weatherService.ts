@@ -3,7 +3,7 @@ import { cache } from '../config/cache';
 import { env } from '../config/env';
 import type { WeatherData } from '../types/weather';
 
-export async function getWatherByCountry(
+export async function getWeatherByCountry(
   country: string,
 ): Promise<WeatherData> {
   const cacheKey = country.toLowerCase();
@@ -36,6 +36,8 @@ export async function getWatherByCountry(
       notFound.name = 'COUNTRY_NOT_FOUND';
       throw notFound;
     }
-    throw new Error('WATHER_API_UNAVAILABLE');
+    const apiError = new Error('WATHER_API_UNAVAILABLE');
+    apiError.name = 'WATHER_API_UNAVAILABLE';
+    throw apiError;
   }
 }
