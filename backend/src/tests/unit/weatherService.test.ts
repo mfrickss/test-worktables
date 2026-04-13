@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import axios from 'axios';
-import { getWeatherByCountry } from '../../services/weatherService';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { cache } from '../../config/cache';
+import { getWeatherByCountry } from '../../services/weatherService';
 
 vi.mock('axios');
 

@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
 import request from 'supertest';
+import { describe, expect, it, vi } from 'vitest';
 import app from '../../app';
 import * as weatherService from '../../services/weatherService';
 
@@ -8,9 +8,15 @@ vi.mock('../../services/weatherService');
 describe('GET /weather/:country', () => {
   it('retorna 200 com dados de clima', async () => {
     vi.mocked(weatherService.getWeatherByCountry).mockResolvedValue({
-      country: 'Brazil', city: 'São Paulo', localtime: '2024-01-01 12:00',
-      temperature_c: 28, temperature_f: 82.4, condition: 'Sunny',
-      condition_icon: 'https://example.com/icon.png', feels_like_c: 30, feels_like_f: 80.4,
+      country: 'Brazil',
+      city: 'São Paulo',
+      localtime: '2024-01-01 12:00',
+      temperature_c: 28,
+      temperature_f: 82.4,
+      condition: 'Sunny',
+      condition_icon: 'https://example.com/icon.png',
+      feels_like_c: 30,
+      feels_like_f: 80.4,
     });
 
     const res = await request(app).get('/weather/Brazil');
