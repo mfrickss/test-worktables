@@ -93,8 +93,12 @@ Tanto os diretórios `frontend` quanto `backend` oferecem um conjunto unificado 
 ├── backend/
 │   ├── src/
 │   │   ├── config/       # Configuração da aplicação e variáveis de ambiente
+│   │   ├── controllers/  # Controladores da lógica de negócios da API
 │   │   ├── middlewares/  # Middlewares do Express (CORS, Tratamento de erros)
 │   │   ├── routes/       # Definições das rotas da API
+│   │   ├── services/     # Regras de negócios e integração com APIs externas
+│   │   ├── tests/        # Configurações e arquivos de testes
+│   │   ├── types/        # Definições de tipagem do TypeScript
 │   │   ├── server.ts     # Ponto de entrada da aplicação
 │   │   └── app.ts        # Inicialização do aplicativo Express
 │   ├── dist/             # Saída compilada do backend
@@ -104,7 +108,9 @@ Tanto os diretórios `frontend` quanto `backend` oferecem um conjunto unificado 
 │   │   ├── app/          # Páginas do router do Next.js
 │   │   ├── components/   # Componentes de UI reutilizáveis (SearchBar, Modal, etc.)
 │   │   ├── hooks/        # Hooks personalizados do React (monday.com data, clima)
-│   │   └── services/     # Abstrações de requisições à API
+│   │   ├── services/     # Abstrações de requisições à API
+│   │   ├── types/        # Definições de tipagem compartilhadas no Frontend
+│   │   └── utils/        # Funções utilitárias auxiliares
 │   └── package.json
 └── README.md
 ```
