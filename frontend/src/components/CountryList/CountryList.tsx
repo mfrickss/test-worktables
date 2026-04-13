@@ -20,11 +20,7 @@ export function CountryList({ items, onSelect }: CountryListProps) {
   return (
     <div className={styles.grid}>
       {items.map((item) => (
-        <CountryItem 
-          key={item.id} 
-          country={item} 
-          onClick={onSelect} 
-        />
+        <CountryItem key={item.id} country={item} onClick={onSelect} />
       ))}
     </div>
   );

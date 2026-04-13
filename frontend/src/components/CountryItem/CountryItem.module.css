@@ -1,41 +1,47 @@
 .itemCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  outline: none;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	border-radius: 16px;
+	padding: 1.25rem 1.5rem;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	backdrop-filter: blur(10px);
+	outline: none;
 }
 
-.itemCard:hover, .itemCard:focus-visible {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+.itemCard:hover,
+.itemCard:focus-visible {
+	transform: translateY(-4px);
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(59, 130, 246, 0.5);
+	box-shadow:
+		0 10px 25px -5px rgba(0, 0, 0, 0.2),
+		0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .name {
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: #f8fafc;
+	font-size: 1.125rem;
+	font-weight: 500;
+	color: #f8fafc;
 }
 
 .arrow {
-  width: 20px;
-  height: 20px;
-  color: #6b7280;
-  transition: transform 0.3s ease, color 0.3s ease;
+	width: 20px;
+	height: 20px;
+	color: #6b7280;
+	transition:
+		transform 0.3s ease,
+		color 0.3s ease;
 }
 
-.itemCard:hover .arrow, .itemCard:focus-visible .arrow {
-  transform: translateX(4px);
-  color: #3b82f6;
+.itemCard:hover .arrow,
+.itemCard:focus-visible .arrow {
+	transform: translateX(4px);
+	color: #3b82f6;
 }
