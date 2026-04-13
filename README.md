@@ -32,8 +32,6 @@ Antes de configurar o projeto localmente, certifique-se de ter os seguintes iten
 - Node.js (v20 ou superior recomendado)
 - npm ou yarn
 
-Além disso, você precisará de uma conta de desenvolvedor do monday.com para instalar e testar o widget dentro de um quadro de uma área de trabalho, assim como uma chave de API para o serviço meteorológico externo subjacente (como OpenWeatherMap ou equivalente, conforme configurado no backend).
-
 ## Instruções de Configuração
 
 ### 1. Configuração do Backend
@@ -76,16 +74,6 @@ npm run dev
 ```
 
 O frontend será executado, por padrão, em `http://localhost:3000`.
-
-### 3. Configuração da Integração com o monday.com
-
-Para testar a integração dentro do monday.com:
-1. Faça login na sua conta do monday.com.
-2. Navegue até o Developer Center e crie um novo App.
-3. Adicione o recurso "Board View" (Visualização de Quadro) ao seu App.
-4. Defina a URL Personalizada da view para apontar diretamente para seu ambiente frontend local (ex: `http://localhost:3000`) ou use um serviço de tunelamento como o ngrok para expor seu servidor local.
-5. Crie um quadro de testes contendo colunas de texto ou localização com os nomes dos países.
-6. Adicione o widget de Board View recém-criado ao quadro.
 
 ## Scripts Disponíveis
 
