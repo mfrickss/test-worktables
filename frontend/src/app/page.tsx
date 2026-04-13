@@ -9,23 +9,20 @@ import { WeatherModal } from '@/components/WeatherModal/WeatherModal';
 import styles from './page.module.css';
 
 export default function Home() {
-  const { items, loading: loadingBoard } = useMondayData();
+  const { items, loading: loadingBoard, error: boardError } = useMondayData();
   const {
     weather,
     loading: loadingWeather,
-    error,
+    error: weatherError,
     loadWeather,
     clearWeather,
   } = useWeather();
-  const [search, setSearch] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filtered = useMemo(
-    () =>
-      items.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase()),
-      ),
-    [items, search],
+  const filteredItems = useMemo(
+    () => items.filter((item) => item.name.toLowerCase().includes(searchQuery.toLowerCase())),
+    [items, searchQuery]
   );
 
   async function handleSelect(country: string) {
@@ -33,9 +30,20 @@ export default function Home() {
     await loadWeather(country);
   }
 
-  function handleClose() {
+  function handleCloseModal() {
     setSelectedCountry(null);
     clearWeather();
+  }
+
+  if (boardError) {
+    return (
+      <main className={styles.main}>
+        <div className={styles.errorContainer}>
+          <h2>Failed to Sync Data</h2>
+          <p>{boardError}</p>
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -50,15 +58,22 @@ export default function Home() {
           </p>
         </header>
 
-        <SearchBar onSearch={setSearch} />
-
         {loadingBoard ? (
           <div className={styles.loadingState}>
             <div className={styles.pulse}></div>
             <p>Syncing with monday.com...</p>
           </div>
         ) : (
-          <CountryList items={filtered} onSelect={handleSelect} />
+          <SearchBar 
+            items={items} 
+            onSelect={handleSelect} 
+            onSearchChange={setSearchQuery} 
+          />
+        )}
+        
+        {/* Restoring the normal display of countries with the new small cards */}
+        {!loadingBoard && items.length > 0 && (
+          <CountryList items={filteredItems} onSelect={handleSelect} />
         )}
 
         {selectedCountry && (
@@ -66,8 +81,8 @@ export default function Home() {
             country={selectedCountry}
             weather={weather}
             loading={loadingWeather}
-            error={error}
-            onClose={handleClose}
+            error={weatherError}
+            onClose={handleCloseModal}
           />
         )}
       </div>
