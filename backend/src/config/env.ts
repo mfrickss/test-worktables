@@ -1,4 +1,7 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'node:path';
+
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 if (!process.env.WEATHER_API_KEY) {
   throw new Error('A WEATHER_API_KEY não está definida.');
