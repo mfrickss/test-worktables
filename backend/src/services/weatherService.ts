@@ -24,8 +24,8 @@ export async function getWeatherByCountry(
       temperature_f: data.current.temp_f,
       condition: data.current.condition.text,
       condition_icon: `https:${data.current.condition.icon}`,
-      feels_like_c: data.current.feels_like_c,
-      feels_like_f: data.current.feels_like_f,
+      feels_like_c: data.current.feelslike_c,
+      feels_like_f: data.current.feelslike_f,
     };
 
     cache.set(cacheKey, weather);
