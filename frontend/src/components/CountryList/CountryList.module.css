@@ -1,25 +1,6 @@
 .grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 1.25rem;
-	width: 100%;
-}
-
-.emptyState {
-	text-align: center;
-	padding: 4rem 2rem;
-	background: rgba(255, 255, 255, 0.02);
-	border-radius: 20px;
-	border: 1px dashed rgba(255, 255, 255, 0.1);
-}
-
-.emptyIcon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-	opacity: 0.5;
-}
-
-.emptyState p {
-	color: #9ca3af;
-	font-size: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
 }

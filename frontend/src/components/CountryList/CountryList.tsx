@@ -11,7 +11,6 @@ export function CountryList({ items, onSelect }: CountryListProps) {
   if (items.length === 0) {
     return (
       <div className={styles.emptyState}>
-        <div className={styles.emptyIcon}>🌍</div>
         <p>No countries found matching your search.</p>
       </div>
     );

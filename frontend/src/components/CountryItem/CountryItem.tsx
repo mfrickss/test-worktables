@@ -1,5 +1,8 @@
-import type { CountryItem as CountryItemType } from '@/types/monday';
+import { useState, useEffect } from 'react';
 import styles from './CountryItem.module.css';
+import type { CountryItem as CountryItemType } from '@/types/monday';
+import { getCountryFlagUrl } from '@/utils/flags';
+import { fetchWeather } from '@/services/weatherApi';
 
 interface CountryItemProps {
   country: CountryItemType;
@@ -7,6 +10,21 @@ interface CountryItemProps {
 }
 
 export function CountryItem({ country, onClick }: CountryItemProps) {
+  const [conditionIcon, setConditionIcon] = useState<string | null>(null);
+  const flagUrl = getCountryFlagUrl(country.name);
+
+  useEffect(() => {
+    let mounted = true;
+    fetchWeather(country.name)
+      .then((data) => {
+        if (mounted && data.condition_icon) {
+          setConditionIcon(data.condition_icon);
+        }
+      })
+      .catch(() => {});
+    return () => { mounted = false; };
+  }, [country.name]);
+
   return (
     <div
       className={styles.itemCard}
@@ -20,21 +38,22 @@ export function CountryItem({ country, onClick }: CountryItemProps) {
       }}
     >
       <div className={styles.content}>
-        <span className={styles.name}>{country.name}</span>
-        <svg
-          className={styles.arrow}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-          />
-        </svg>
+        <div className={styles.leftContent}>
+          {flagUrl ? (
+            <img src={flagUrl} alt={`${country.name} flag`} className={styles.flag} />
+          ) : (
+            <span className={styles.flagFallback}>🏳️</span>
+          )}
+          <span className={styles.name} title={country.name}>{country.name}</span>
+        </div>
+        
+        <div className={styles.rightContent}>
+          {conditionIcon ? (
+             <img src={conditionIcon} alt="condition" className={styles.apiWeatherIcon} />
+          ) : (
+             <div className={styles.iconPlaceholder} />
+          )}
+        </div>
       </div>
     </div>
   );
